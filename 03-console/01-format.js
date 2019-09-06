@@ -12,6 +12,9 @@ const log = console.log;
 //%j对象类型
 log('name: %s,age: %d',user.name,user.age);
 log('JSON: %j',user);
-
-log('qq: %s',user.qq);//占位符输出
+//输出方式
+log('qq:%s',user.qq);//占位符输出
+log('qq:',user.qq);//逗号间隔，多变量输出
+log('qq:'+user.qq);//拼接字符串输出
+log(`qq:${user.qq}`);//模板字符串输出
 

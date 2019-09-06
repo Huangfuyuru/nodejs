@@ -9,8 +9,8 @@ function longTask(){
   return num;
 }
 //记录程序时间
-console.time('Time');
+console.time('Time');//开始计时 console.time('字符串');
 var n=longTask();
-console.timeEnd('Time');
+console.timeEnd('Time');//结束计时 console.timeEnd('相同的字符串'),会自动出数字
 console.log('n = %d',n);
 
