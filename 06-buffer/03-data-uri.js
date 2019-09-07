@@ -1,9 +1,22 @@
 #!/usr/bin/node
 
-//看视频!!!!
-const fs = requrie('fs'),
-      log = console.log;
-var data = fs.readFile('./qr-code.jpg').toString('base64');
-log(data);
+//Buffer实现Data URI
+var fs = require('fs');//引入系统文件
+var http = require('http');
+var mine = 'image/png';//图片格式
+var name = process.argv[2];//通过参数获得图片名
 
-http.create
+var data = fs.readFileSync('./book.png').toString('base64');//同步读取图片，还有异步读取
+//没加toString('base64')的时候读取出来的是一个buffer,然后加toString('base64'),可以以'base64'这种格式读取，二进制转换base64
+
+//然后以固定格式连接起来
+var uri = 'data:' + mine + ';base64,' + data;
+console.log('img-name',name);
+console.log('uri',uri);
+//网页监听
+//直接嵌入省贷宽，网页优化
+var html = '<!DOCTYPE html><html><body><img alt="book.png" src="' + uri + '"></body></html>';
+http.createServer(function(req,res){
+  console.log(req.headers);
+  res.end(html);
+}).listen(8080);
