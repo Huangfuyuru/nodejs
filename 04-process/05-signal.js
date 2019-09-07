@@ -1,6 +1,5 @@
 #!/usr/bin/node
 //处理信号量
-//一个进程响应另一个进程发出的信号
 
 console.log('process.id',process.pid);
 //不让进程退出
@@ -12,7 +11,7 @@ process.on('SIGINT',function(){
   process.exit(0);
 });
 
-process.on('SIGSTP',function(){
+process.on('SIGTSTP',function(){
   console.log('you press ctrl z,stop running');
 })
 
