@@ -1,5 +1,9 @@
 #!/usr/bin/node
-const http = require('http');
-http.createServer((req,res)=>{
-  res.end('hello world');
-}).listen(8080);
+
+//模块化之非全局模块
+//需要先使用npm install 模块名 来安装
+var now = require('date-now');//date对象的now方法封装成了一个模块
+
+console.log(now());
+
+console.log(Date.now());
