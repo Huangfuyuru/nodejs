@@ -2,6 +2,6 @@
 var circle = require('./02-export-function.js');
 
 //console.log(circle);
-//console.log(circle(20));
+console.log(circle(20));
 console.log('area',circle(20).area());
 console.log('circumference',circle(20).circumference());

@@ -17,4 +17,4 @@ module.exports = function(radius){
   };
 }
 
-console.log('02-export-function',module);
+//console.log('02-export-function',module);
