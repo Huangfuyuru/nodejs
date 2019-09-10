@@ -16,6 +16,7 @@ console.log('img-name',name);
 console.log('uri',uri);
 //网页监听
 //直接嵌入省贷宽，网页优化
+//小图标使用，减少请求次数
 var html = '<!DOCTYPE html><html><body><img alt="book.png" src="' + uri + '"></body></html>';
 //写成一个服务器
 http.createServer(function(req,res){
