@@ -5,10 +5,27 @@
 //argv[2]是实际的命令所在位置
 //console.log(process.argv.length);
 //console.log(process.argv);
-var argv = process.argv;
 
+const log = console.log,
+      arg = process.argv[2];
 
-var expression  = process.argv[2];
+if(typeof(arg) === 'undefined' || arg === '--help' || arg === '-h'){
+  help();
+}else{
+  calc();
+}
 
-console.log(expression+'='+'%d',eval(expression));
+function help(){
+  const msg = '' 
+        + 'usage: cmd-name [OPTION] [expression]\n'
+            + 'evaluate the expression.\n'
+                + '\n'
+                    + 'Mandatory arguments to long options are mandatory for short options too.\n'
+                        + '  -h, --help output help information and exit\n';
 
+    log(msg);
+}
+
+function calc(){
+  log(arg + '=%s',eval(arg))
+}

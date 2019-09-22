@@ -14,3 +14,4 @@ var circle = require('./02-export-object.js');
 console.log(circle.area(10));
 console.log(circle.circumference(10));
 console.log(circle.diameter(10));
+

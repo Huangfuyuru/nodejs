@@ -3,6 +3,10 @@
 const log = console.log;
 const usr = process.argv[2];
 const pwd = process.argv[3];
+if(usr === undefined || pwd === undefined){
+  console.log('信息错误');
+  process.exit(1);
+}
 log('usr: %s,pwd: %s',usr,pwd);
 
 var str = usr + ':' + pwd;
