@@ -9,11 +9,11 @@ switch(process.argv.length){
      fs.linkSync(src,dst);
     break;
   case 5://soft link
-     var  src = process.argv[2],
-          dst = process.argv[3],
-          lnk = process.argv[4];
-     if(src !== '-s') errMsg();
-     fs.symlinkSync(dst,lnk)
+     var s = process.argv[2],
+         src = process.argv[3],
+         link = process.argv[4];
+     if(s !== '-s') errMsg();
+     fs.symlinkSync(src,lnk)
     break;
   default://error
     errMsg();

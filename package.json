@@ -1,0 +1,26 @@
+{
+  "name": "wangding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "template.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "eslint": "^6.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Huangfuyuru/nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Huangfuyuru/nodejs/issues"
+  },
+  "homepage": "https://github.com/Huangfuyuru/nodejs#readme"
+}

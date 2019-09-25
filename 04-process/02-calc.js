@@ -22,8 +22,7 @@ function help(){
                 + '\n'
                     + 'Mandatory arguments to long options are mandatory for short options too.\n'
                         + '  -h, --help output help information and exit\n';
-
-    log(msg);
+  log(msg);
 }
 
 function calc(){
