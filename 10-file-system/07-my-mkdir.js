@@ -3,4 +3,9 @@
 const fs = require('fs'),
       dir = process.argv[2];
 
-fs.mkdirSync(dir)
+if(dir){
+  fs.mkdirSync(dir)
+}else{
+  console.log('输入错误');
+  process.exit(1)
+}

@@ -2,7 +2,11 @@
 
 const fs = require('fs'),
       uid = process.argv[2].
-      gidd = process.argv[3],
-      dst = process.argv[4];
-
-fs.chownSync(dst,uid,gidd);
+      gid = process.argv[3],
+      file = process.argv[4];
+try{
+  fs.chownSync(file,uid,gid);
+}catch(e){
+  console.error('错了');
+  process.exit(1)
+}

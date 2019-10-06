@@ -21,4 +21,4 @@ var bomb = new Bomb();
 var timeID = setTimeout(bomb.explode.bind(bomb),2000);
 
 //setTimeout(bomb.explode,3000);
-//clearTimeout(timeID);  取消定时
+clearTimeout(timeID);  取消定时

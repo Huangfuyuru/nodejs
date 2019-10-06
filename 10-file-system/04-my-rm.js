@@ -3,6 +3,11 @@
 const fs = require('fs'),
       file = process.argv[2] || __filename;
 
-fs.unlinkSync(file);
+try{
+  fs.unlinkSync(file);
+}catch(e){
+  console.log(e.message);
+  process.exit(1)
+}
 
 

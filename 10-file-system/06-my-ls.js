@@ -3,7 +3,13 @@
 const fs = require('fs'),
       dir = process.argv[2] || __dirname;
 //返回的是一个数组
-console.log(fs.readdirSync(dir));
+
+try{
+  console.log(fs.readdirSync(dir))
+}catch(e){
+  console.log(e.message);
+  process.exit(1);
+}
 //来判断是目录还是文件
 //
 //
