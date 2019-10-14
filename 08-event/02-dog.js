@@ -15,7 +15,7 @@ function Dog(name,energy){
 
   var timer = setInterval(()=>{
     if(_energy > 0){
-      that.emit('bark');//定义事件名称
+      that.emit('bark');//触发事件
       _energy--;
     }else{
       clearInterval(timer);
