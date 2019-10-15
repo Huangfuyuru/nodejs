@@ -1,30 +1,34 @@
-window.onload=function(){
-  var todo = document.getElementById('todo');
-  var btnOk = document.getElementById('okButton');
-  var out = document.getElementById('output');
+$(function(){
+  var $todo  = $('#todo'),
+      $btnOk = $('#okButton'),
+      $out   = $('#output');
+
   var items = [];
+
   getItems();
-  todo.onclick=function(){
-    if(todo.value === '') return;
-    fetch('http://192.168.102.144:3000',{method:'POST',body:todo.value})
-    items.push(todo.value);
+
+  $btnOk.click(function(){
+    if($todo.val() === '') return;
+    fetch('http://192.168.133.144:8080', {method: 'POST', body: $todo.val()});
+    items.push($todo.val());
+
     showData();
-}
-  function getItems(){
-    fetch('http://192.168.102.144:3000/').then((res)=>{
-      res.text().then((txt)=>{
+  });
+
+  function getItems() {
+    fetch('http://192.168.133.144:8080/').then(function(res) {
+      res.text().then(function(txt) {
         items = JSON.parse(txt);
         showData();
-      })
-    })
-}
-  function showData(){
-    out.innerHTML = '';
-    var ul = document.createElement('ul');
-    ul.innerHTML=items.map((item)=>{
-      return '<li>'+item+'</li>';
-    }).join('\n');
-    out.appendChild(ul);
+      });
+    });
   }
 
-}
+  function showData() {
+    $out.html('');
+
+    var $ul  = $('<ul></ul>');
+    $ul.html(items.map(function(item) { return '<li>' + item + '</li>'; }).join('\n'));
+    $out.append($ul);
+  }
+});
