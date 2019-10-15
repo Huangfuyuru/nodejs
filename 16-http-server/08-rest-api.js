@@ -25,7 +25,7 @@ http.createServer((req,res)=>{
     break;
   }
   res.end('server OK!')
-}).listen(8080);
+}).listen(3000);
 
 function select(req,res){
   var data = JSON.stringify(items);//将对象或数组 转换为一个 JSON字符串

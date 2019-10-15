@@ -6,12 +6,12 @@ window.onload=function(){
   getItems();
   todo.onclick=function(){
     if(todo.value === '') return;
-    fetch('http://192.168.102.144:8080',{method:'POST',body:todo.value})
+    fetch('http://192.168.102.144:3000',{method:'POST',body:todo.value})
     items.push(todo.value);
     showData();
 }
   function getItems(){
-    fetch('http://192.168.102.144:8080/').then((res)=>{
+    fetch('http://192.168.102.144:3000/').then((res)=>{
       res.text().then((txt)=>{
         items = JSON.parse(txt);
         showData();
