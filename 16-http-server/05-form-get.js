@@ -5,7 +5,8 @@ const http = require('http'),
       url = require('url');
 var items = ['jisoo'];//用来接收
 http.createServer((req, res) =>{
-  if(req.url === '/'){
+  var path = url.parse(req.url).pathname;
+  if(path  === '/'){
     res.writeHead(200,{  //可以用res.writeHead(状态码，一些)
       'Content-Type':'text/html'
     });
@@ -14,7 +15,7 @@ http.createServer((req, res) =>{
   }else{
     res.statusCode = 404;
     res.setHeader('Content-Type','text/plain');
-    res.end('Resource not found!')
+    res.end('Resource not found!');
   }
 }).listen(8080)
 

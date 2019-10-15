@@ -1,26 +1,30 @@
 #!/usr/bin/node
-const http = require('http');
-const items = [];
-const url = require('url');
-const qs = require('querystring');
 
-http.createServer((req, res) =>{
-    var html = '<!DOCTYPE html><html><head><title>TODO LIST</title><head><body><h1>TODO LIST</h1><ul>items.map(function(it){return <li>it</li>}).join('\n')</ul><form method="GET" action="/"><input type="text" name="item"><input type="submit" value="submit"></form></body></html>';
-      
-    if(req.url === '/') {
-      res.writeHead(200, {
-       'Content-Type': 'text/html',
-       'Content-Lenght': Buffer.byteLength(html,'utf8')
-        
-      });
-            
-    } else {
-      var it = qs.parse(url.parse(eq.url).parse);
-      if(typeof it !== 'undefined'){
-        items.push(it)
-      }
-      
-                    
-    }
-res.end(html)
+const http = require('http'),
+      log = console.log;
+
+http.createServer((req,res)=>{
+  if(req.url != '/'){
+    err(res);
+    return
+  }
+  log(`${req.method} ${req.url} HTTP/${req.httpVersion}`);
+  log(req.headers);
+  log('');
+
+  if(req.method === 'POST'){
+    req.pipe(process.stdout);
+    res.end('OK');
+  }else{
+    err(res);
+  }
 }).listen(8080);
+
+function err(res){
+  var msg = 'Not find';
+  res.statusCode = 404;
+  res.setHeader('Content-Length',msg.length);
+  res.setHeader('Content-Type','text/plain');
+
+  res.end(msg);
+}

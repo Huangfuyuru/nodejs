@@ -11,6 +11,7 @@ http.createServer((req,res)=>{
   log('Content-Type:',req.headers['content-type']);
   log('');
 
+  //log('req',req);
   req.pipe(process.stdout);
   res.end('OK')
   

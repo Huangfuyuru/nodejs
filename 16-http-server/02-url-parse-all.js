@@ -11,7 +11,7 @@ http.createServer((req,res)=>{
 }).listen(8080)
 function parseURL(strURL){
   var path = url.parse(strURL);//将一个字符串转换成对象并返回
-  
+  log('path',path);
   log('href:',path.href);
   log('protocol:',path.protocol);//协议
   log('auth:',path.auth);//用户名和密码
@@ -25,5 +25,4 @@ function parseURL(strURL){
 
   log('URL parse:',path.pathname.split('/'));//把路由拆分出来，形成一个数组
   log('QueryString parse:',qs.parse(path.query));//把查询字符串转换为JSON对象
-  log('object url.parse:',path);
 }
