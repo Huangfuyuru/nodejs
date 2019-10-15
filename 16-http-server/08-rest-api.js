@@ -1,7 +1,7 @@
 #!/usr/bin/node
 const http = require('http'),
       log = console.log;
-var items = [];
+var items = ['jisoo','lisa'];
 
 http.createServer((req,res)=>{
   log(`${req.method} ${req.url} HTTP/${req.httpVersion}`);
@@ -28,10 +28,11 @@ http.createServer((req,res)=>{
 }).listen(8080);
 
 function select(req,res){
-  var data = JSON.stringify(items);
+  var data = JSON.stringify(items);//将对象或数组 转换为一个 JSON字符串
   res.setHeader('Content-Length',Buffer.byteLength(data));
   res.setHeader('Content-Type','text/plain;charset="utf-8"');
   res.setHeader('Access-Control-Allow-Origin','*');
+  //log(data);
   res.end(data);
 }
 

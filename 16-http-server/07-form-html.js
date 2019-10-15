@@ -2,8 +2,9 @@
 const http = require('http'),
       log = console.log,
       qs = require('querystring'),
-      url = require('url');
-var items = ['jisoo'];//用来接收
+      url = require('url'),
+      fs = require('fs');
+var items = ['jisoo','lisa','jennie','rose'];//用来接收
 http.createServer((req, res) =>{
   req.url = url.parse(req.url).pathname;
 
@@ -24,7 +25,6 @@ http.createServer((req, res) =>{
     })
     req.on('end',()=>{
       if(typeof it !== 'undefined'){
-        log(it);
         items.push(qs.parse(it).item)
       }
       show(res)
@@ -39,23 +39,16 @@ http.createServer((req, res) =>{
 
 //join把数组中的所有元素放入一个字符串，通过指定的分隔符进行分割
 function show(res){
-
-  var html = '<!DOCTYPE html>\n'
-              +'<html>\n'
-              +'  <head>\n'
-              +'    <meta charset="UTF-8">\n'
-              +'    <title>Todo list</title>\n'
-              +'  <head>\n'
-              +'  <body>\n'
-              +'    <h1>Todo List</h1>\n'
-              +'    <ul>\n'
-              + items.map(function(item){return '<li>'+item+'</li>'}).join('\n')
-              +'    </ul>\n'
-              +'    <form method="POST" action="/" />\n'
-              +'    <input type="text" name="item"/>\n'
-              +'    <input type="submit" value="Add Item"/>\n'
-              +'    </form>\n'
-              +'  </body>\n'
-              +'</html>\n';
+  var html = fs.readFileSync('./template.html').toString('utf8'),
+      items_html = items.map(function(item){
+        return '<li>'+item+'</li>';
+      }).join('\n');
+  //将%占位符替换
+  html = html.replace('%',items_html);
+  res.writeHead(200,{
+    'Content-Type':'text/html',
+    'Content-Length':Buffer.byteLength(html),
+    'Access-Control-Allow-Origin':'*'
+  })
   res.end(html);
 }

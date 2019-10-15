@@ -26,9 +26,9 @@ http.createServer((req, res) =>{
 
     //step2:save file
     fs.writeFileSync(filename1,filedata1,{'enconding':'binary'})
+    log('f1',f1);
   });
 
-  //step2:save file
-  req.pipe(process.stdout);
+  //req.pipe(process.stdout);
   res.end('OK!')
 }).listen(8080)
