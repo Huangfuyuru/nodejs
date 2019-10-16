@@ -5,7 +5,7 @@ const http = require('http'),
 
 http.createServer((req,res)=>{
     var file = __dirname + req.url;
-    log(req.url);
+    log(file);
   
   fs.readFile(file,(err,data)=>{
     if(err){
@@ -14,7 +14,9 @@ http.createServer((req,res)=>{
       res.end(err.message);
     }else{
       log(file);
-      log(data.toString('utf8'));
+      res.writeHead(200,{
+        'Content-Type':'text/html'
+      })
       res.end(data)
     }
   })
