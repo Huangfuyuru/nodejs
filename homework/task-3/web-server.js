@@ -4,9 +4,11 @@ const http = require('http'),
       fs = require('fs');
 
 http.createServer((req,res)=>{
+  var path = url.parse(req.url);
+  var pathQuery = path.query;
   var file = __dirname;
   var fileitem = [];
-  
+  if(pathQuery === 'undefined'){
   switch(req.url){
     case '/list/':
       file += '/chapterList.html';
@@ -28,6 +30,8 @@ http.createServer((req,res)=>{
       };
       break;
   }
+  }
+  log(pathQuery);
   log(file);
   
   fs.readFile(file,(err,data)=>{
