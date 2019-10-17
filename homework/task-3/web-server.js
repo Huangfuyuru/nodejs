@@ -47,9 +47,9 @@ var chapterList = [
   }
 ];
 http.createServer((req,res)=>{
-  log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
-  log(req.headers);
-  log('');
+  //log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
+  //log(req.headers);
+  //log('');
 
   switch(req.method){
     case 'GET':
@@ -80,7 +80,7 @@ function select(req,res){
   var file = __dirname;
   var fileitem = [];
   if(pathQuery != null){
-    var data=chapterList[itemQuery.chapterId];
+    var data=chapterList[itemQuery.chapterId-1];
     res.setHeader('Content-Length',Buffer.byteLength(data));
     res.setHeader('Content-Type','text/plain;charset="utf-8"');
     res.setHeader('Access-Control-Allow-Origin','*');
