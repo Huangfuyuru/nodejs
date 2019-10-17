@@ -4,8 +4,31 @@ const http = require('http'),
       fs = require('fs');
 
 http.createServer((req,res)=>{
-    var file = __dirname + req.url;
-    log(file);
+  var file = __dirname;
+  var fileitem = [];
+  
+  switch(req.url){
+    case '/list/':
+      file += '/chapterList.html';
+      break;
+    case '/login/':
+      file += '/login.html';
+      break;
+    case '/listmanager/':
+      file += '/list.html';
+      break;
+    case '/addChapter/':
+      file += '/addChapter.html';
+      break;
+    default:
+      fileitem = req.url.split('/');
+      for(var a = 2;a<fileitem.length;a++){
+        var s = '/'+fileitem[a];
+        file += s
+      };
+      break;
+  }
+  log(file);
   
   fs.readFile(file,(err,data)=>{
     if(err){
