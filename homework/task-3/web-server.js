@@ -79,6 +79,13 @@ function select(req,res){
   var itemQuery = qs.parse(pathQuery);
   var file = __dirname;
   var fileitem = [];
+  if(pathQuery != null){
+    var data=chapterList[itemQuery.chapterId];
+    res.setHeader('Content-Length',Buffer.byteLength(data));
+    res.setHeader('Content-Type','text/plain;charset="utf-8"');
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.end(data);
+  }
   switch(req.url){
     case '/list/':
       file += '/chapterList.html';
@@ -100,16 +107,17 @@ function select(req,res){
       }
       break;
     }
-  fs.readFile(file,(err,data)=>{
-    if(err){
-      log(err.message);
-      res.statusCode = 404;
-      res.end(err.message);
-    }else{
-      res.writeHead(200,{
-        'Content-Type':'text/html'
-      })
-      res.end(data)
-    }
-  })
+    
+    fs.readFile(file,(err,data)=>{
+      if(err){
+        log(err.message);
+        res.statusCode = 404;
+        res.end(err.message);
+      }else{
+        res.writeHead(200,{
+          'Content-Type':'text/html'
+        })
+        res.end(data)
+      }
+    })
 }
