@@ -47,11 +47,11 @@
         $.get("http://192.168.102.144:8080/getDetail?chapterId=" + chapterId, function(data) {
             var dataObj = JSON.parse(data);
             console.log(dataObj);
-            $("#title").html(dataObj[0]["chapterName"]);
-            $("#publish").html(dataObj[0]["publishTimer"]);
-            $("#author").html(dataObj[0]["author"]);
-            $("#views").html(dataObj[0]["views"]);
-            $("#content").html(dataObj[0]["chapterContent"]);
+            $("#title").html(dataObj["chapterName"]);
+            $("#publish").html(dataObj["publishTimer"]);
+            $("#author").html(dataObj["author"]);
+            $("#views").html(dataObj["views"]);
+            $("#content").html(dataObj["chapterContent"]);
         })
     })
 </script>
