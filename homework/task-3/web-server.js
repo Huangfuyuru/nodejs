@@ -1,14 +1,15 @@
 #!/usr/bin/node
 const http = require('http'),
       log = console.log,
-      fs = require('fs');
+      fs = require('fs'),
+      url = require('url');
 
 http.createServer((req,res)=>{
   var path = url.parse(req.url);
   var pathQuery = path.query;
   var file = __dirname;
   var fileitem = [];
-  if(pathQuery === 'undefined'){
+  if(pathQuery != 'undefined'){
   switch(req.url){
     case '/list/':
       file += '/chapterList.html';
