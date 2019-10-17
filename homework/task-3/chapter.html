@@ -46,6 +46,7 @@
         console.log(chapterId);
         $.get("http://192.168.102.144:8080/getDetail?chapterId=" + chapterId, function(data) {
             var dataObj = JSON.parse(data);
+            console.log(dataObj);
             $("#title").html(dataObj[0]["chapterName"]);
             $("#publish").html(dataObj[0]["publishTimer"]);
             $("#author").html(dataObj[0]["author"]);
