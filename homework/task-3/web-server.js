@@ -1,6 +1,7 @@
 #!/usr/bin/node
 const http = require('http'),
       log = console.log,
+<<<<<<< HEAD
       fs = require('fs');
 var chapterList = [
   {
@@ -44,6 +45,12 @@ var chapterList = [
       "views": 102
   }
 ];
+=======
+      fs = require('fs'),
+      url = require('url'),
+      qs = require('querystring');
+
+>>>>>>> c5e7ae0781cf18733090de481d11b468dbed798f
 http.createServer((req,res)=>{
   log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
   log(req.headers);
@@ -74,9 +81,15 @@ http.createServer((req,res)=>{
 function select(req,res){
   var path = url.parse(req.url);
   var pathQuery = path.query;
+  var itemQuery = qs.parse(pathQuery);
   var file = __dirname;
   var fileitem = [];
+<<<<<<< HEAD
 
+=======
+  
+  if(pathQuery == null){
+>>>>>>> c5e7ae0781cf18733090de481d11b468dbed798f
   switch(req.url){
     case '/list/':
       file += '/chapterList.html';
@@ -98,14 +111,20 @@ function select(req,res){
       };
       break;
   }
+<<<<<<< HEAD
   
+=======
+  }
+  if(itemQuery.chapterId == '4'){
+    file += '/chapter.html'
+  }
+>>>>>>> c5e7ae0781cf18733090de481d11b468dbed798f
   fs.readFile(file,(err,data)=>{
     if(err){
       log(err.message);
       res.statusCode = 404;
       res.end(err.message);
     }else{
-      log(file);
       res.writeHead(200,{
         'Content-Type':'text/html'
       })
