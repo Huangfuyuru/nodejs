@@ -79,8 +79,8 @@ function select(req,res){
   var itemQuery = qs.parse(pathQuery);
   var file = __dirname;
   var fileitem = [];
-  if(itemQuery.chapterId&&QuepathQuery != null){
-    var data=chapterList[itemQuery.chapterId-1];
+  if(itemQuery.chapterId && pathQuery != null){
+    var data=JSON.stringify(chapterList[itemQuery.chapterId-1]);
     res.setHeader('Content-Length',Buffer.byteLength(data));
     res.setHeader('Content-Type','text/plain;charset="utf-8"');
     res.setHeader('Access-Control-Allow-Origin','*');
@@ -100,14 +100,16 @@ function select(req,res){
       file += '/addChapter.html';
       break;
     default:
-      fileitem = req.url.split('/');
+      var fileQuery = req.url.split('?')[0];
+      fileitem = fileQuery.split('/');
+      log(fileitem);
       for(var a = 2;a<fileitem.length;a++){
         var s = '/'+fileitem[a];
         file += s
       }
       break;
     }
-    
+   // log(file)
     fs.readFile(file,(err,data)=>{
       if(err){
         log(err.message);
