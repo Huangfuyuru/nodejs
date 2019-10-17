@@ -79,7 +79,7 @@ function select(req,res){
   var itemQuery = qs.parse(pathQuery);
   var file = __dirname;
   var fileitem = [];
-  if(pathQuery != null){
+  if(itemQuery.chapterId&&QuepathQuery != null){
     var data=chapterList[itemQuery.chapterId-1];
     res.setHeader('Content-Length',Buffer.byteLength(data));
     res.setHeader('Content-Type','text/plain;charset="utf-8"');
