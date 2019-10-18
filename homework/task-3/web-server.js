@@ -134,6 +134,7 @@ function create(req,res){
  // log('');
  
   var item = '';
+  if(req.url == '/login/'){
   req.on('data',(data)=>{
     item += data;
   });
@@ -148,4 +149,33 @@ function create(req,res){
     log('失败');
     res.end('no');
   });
+  }
+
+  if(req.url == '/add'){
+    req.on('data',(data)=>{
+      item += data;
+    });
+    req.on('end',()=>{
+      item = qs.parse(item.toString('utf8'));
+      var newText = new CreateText(item.title,item.content);
+      chapterList.push(newText);
+      log(chapterList[chapterList.length-1]);
+      
+    })
+    res.end('OK')
+  }
+
+}
+
+function CreateText(chapterName,chapterContent,chapterId,imgPath,chapterDes,publishTimer,author,views){
+  var o = new Object();
+  o.chapterId = chapterList.length+1;
+  o.chapterName = chapterName;
+  o.imgPath = imgPath || undefined;
+  o.chapterDes = chapterDes || undefined;
+  o.chapterContent = chapterContent;
+  o.publishTimer = new Date().getTime();
+  o.author = author || undefined;
+  o.views = views || undefined;
+  return o;
 }
