@@ -142,11 +142,11 @@ function create(req,res){
     userList.forEach((person)=>{
       if(person.username == item.username && person.pwd == item.pwd){
         log('成功');
-        res.end('NICE')
+        res.end('http://192.168.58.144:8080/addChapter/');
       }
-    })
+    });
+    res.statusCode = 404;
+    log('失败');
+    res.end('no');
   });
-  log('错误');
-  res.statusCode = 404;
-  res.end('不存在');
 }
