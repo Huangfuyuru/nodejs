@@ -4,6 +4,9 @@ const http = require('http'),
       fs = require('fs'),
       url = require('url'),
       qs = require('querystring');
+var userList = [
+  {username:'admin',pwd:'admin'}
+];
 var chapterList = [
   {
       "chapterId": 1,
@@ -103,7 +106,7 @@ function select(req,res){
     default:
       var fileQuery = req.url.split('?')[0];
       fileitem = fileQuery.split('/');
-      log(fileitem);
+      //log(fileitem);
       for(var a = 2;a<fileitem.length;a++){
         var s = '/'+fileitem[a];
         file += s
@@ -126,9 +129,24 @@ function select(req,res){
 };
 
 function create(req,res){
-  log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
-  log(req.headers);
-  log('');
-
-  res.end('OK');
+ // log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
+ // log(req.headers);
+ // log('');
+ 
+  var item = '';
+  req.on('data',(data)=>{
+    item += data;
+  });
+  req.on('end',()=>{
+    item = JSON.parse(item);
+    userList.forEach((person)=>{
+      if(person.username == item.username && person.pwd == item.pwd){
+        log('成功');
+        res.end('NICE')
+      }
+    })
+  });
+  log('错误');
+  res.statusCode = 404;
+  res.end('不存在');
 }
