@@ -44,7 +44,7 @@
         var chapterId = search.substr(search.indexOf("=") + 1);
         console.log(search);
         console.log(chapterId);
-        $.get("http://192.168.102.144:8080/getDetail?chapterId=" + chapterId, function(data) {
+        $.get("http://192.168.58.144:8080/getDetail?chapterId=" + chapterId, function(data) {
             var dataObj = JSON.parse(data);
             console.log(dataObj);
             $("#title").html(dataObj["chapterName"]);

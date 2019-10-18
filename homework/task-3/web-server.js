@@ -123,4 +123,12 @@ function select(req,res){
         res.end(data)
       }
     })
+};
+
+function create(req,res){
+  log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
+  log(req.headers);
+  log('');
+
+  res.end('OK');
 }
