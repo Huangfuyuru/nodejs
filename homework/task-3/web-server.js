@@ -145,7 +145,6 @@ function create(req,res){
         res.end('http://192.168.58.144:8080/addChapter/');
       }
     });
-    res.statusCode = 404;
     log('失败');
     res.end('no');
   });

@@ -15,10 +15,10 @@ window.onload=function(){
             'Content-Type':'application/json'
           })
           }).then((res)=>{
-            console.log('你好');
-            console.log(res.text());
-            console.log(res.text().PromiseValue);
-            //document.location = res.text().PromiseValue;
-        })
-    }
+            res.text().then((txt)=>{
+              console.log(txt);
+              document.location = txt;
+            })
+          })
+  }
 }
