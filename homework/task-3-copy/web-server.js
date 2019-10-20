@@ -10,10 +10,12 @@ var userList = [
 var chapterList =  [];
 fs.readFile('./js/data.js',(err,data)=>{
   if(err){
-  console.err(err.message);
+  console.log("没读到");
+  process.exit(1);
   }else{
-  chapterList = data;   
+  chapterList = JSON.parse(data.toString('utf8'));   
 }
+log(chapterList[1]);
 });
 http.createServer((req,res)=>{
   //log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
