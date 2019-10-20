@@ -7,16 +7,7 @@ const http = require('http'),
 var userList = [
   {username:'admin',pwd:'admin'}
 ];
-var chapterList =  [];
-fs.readFile('./js/data.js',(err,data)=>{
-  if(err){
-  console.log("没读到");
-  process.exit(1);
-  }else{
-  chapterList = JSON.parse(data.toString('utf8'));   
-}
-log(chapterList[1]);
-});
+var chapterList = JSON.parse(fs.readFileSync('./js/data.js','utf8'));
 http.createServer((req,res)=>{
   //log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
   //log(req.headers);
@@ -127,7 +118,7 @@ function create(req,res){
       item = qs.parse(item.toString('utf8'));
       var newText = new CreateText(item.title,item.content);
       chapterList.push(newText);
-      log(chapterList[chapterList.length-1]);
+      fs.writeFileSync('./js/data.js',JSON.stringify(chapterList));
       
     })
     res.end('OK')
