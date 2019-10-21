@@ -20,18 +20,9 @@ http.createServer((req,res)=>{
     case 'POST':
       create(req,res);
       break;
-    case 'PUT':
-      update(req,res)
-      break;
-    case 'DELETE':
-      remove(req,res);
-      break;
     default:
       break;
     }
-    
-  
-  
 }
 ).listen(8080);
 
@@ -47,7 +38,13 @@ function select(req,res){
     res.setHeader('Content-Type','text/plain;charset="utf-8"');
     res.setHeader('Access-Control-Allow-Origin','*');
     res.end(data);
-
+  }
+  if(req.url == '/list'){
+    var data = JSON.stringify(chapterList);
+    res.setHeader('Content-Length',Buffer.byteLength(data));
+    res.setHeader('Content-Type','text/plain;charset="utf-8"');
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.end(data);
   }
   switch(req.url){
     case '/list/':
