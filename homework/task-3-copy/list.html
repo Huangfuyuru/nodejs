@@ -128,22 +128,23 @@
 <script>
         $(document).ready(function(){
             $.get("http://192.168.58.144:8080/list",(data)=>{
-                var dataObj = JSON.parse(obj);
+                var dataObj = JSON.parse(data);
                 for(var i=0;i<dataObj.length;i++){
                     var parenttr=$('<tr></tr>');
                     var td1=$('<td></td>');
-                    td1.innerHTML = dataObj[i].chapterId;
+                    td1.append(dataObj[i].chapterId);
                     var td2=$('<td></td>');
-                    td2.innerHTML = dataObj[i].chapterName;
+                    td2.append(dataObj[i].chapterName);
                     var td3=$('<td></td>');
-                    td3.innerHTML = dataObj[i].views;
+                    td3.append(dataObj[i].views);
                     var td4=$('<td></td>');
-                    td4.innerHTML = 'admin';
+                    td4.append('admin');
                     td1.appendTo(parenttr);
                     td2.appendTo(parenttr);
                     td3.appendTo(parenttr);
                     td4.appendTo(parenttr);
                     $('#result').append(parenttr);
+                
                 }
             })
         })
