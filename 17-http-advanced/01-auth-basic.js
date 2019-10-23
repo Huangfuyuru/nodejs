@@ -3,8 +3,8 @@ const http = require('http'),
       log = console.log;
 
 http.createServer((req,res)=>{
-  log(`${req.method} ${req.url} ${req.httpVersion}`);
-  log(req.headers);
+ // log(`${req.method} ${req.url} ${req.httpVersion}`);
+ // log(req.headers);
 
   switch(req.url){
     case '/':
@@ -42,14 +42,17 @@ function sendNormalMsg(res){
 
 function sendSecretMsg(req,res){
   //用户名，密码信息保存在请求头的authorization
-  log('外',req.headers.authorization);
+  var auth = req.headers.authorization;
+  //log('外',auth);
   
-  if(req.headers.authorization){
-    log('内',req.headers.authorization)
-    var usr = userNamePasswd(req.headers.authorization);
+  //如果req.headers.authorization 也就是说有用户名和密码
+  //则进行验证用户密码的正确性
+  if(auth){
+    //log('内',auth)
+    var usr = userNamePasswd(auth);
     log(`userName:${usr.userName},passWord:${usr.passWord}`);
-    if(usr.userName === 'hf' && usr.passWord === '123'){
-      res.end('OK 验证成功');
+    if(usr.userName === 'wangding' && usr.passWord === '123'){
+      res.end('OK right');
       return;
     }
   }
