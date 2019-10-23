@@ -1,7 +1,8 @@
 #!/usr/bin/node
 const http = require('http'),
       log = console.log,
-      qs = require('querystring');
+      qs = require('querystring'),
+      fs = require('fs');
 
 var isLogin;
 http.createServer((req,res)=>{
@@ -49,6 +50,8 @@ http.createServer((req,res)=>{
 }).listen(8080);
 
 function showHome(res){
+  var html = fs.readFileSync('./home.html','utf-8');
+  /*
    var html='<!DOCTYPE html>'
             + '<html>'
             + '  <head>'
@@ -60,7 +63,7 @@ function showHome(res){
           + '       <a href="/logout">logout</a>'
           + '    </body>'
             + '</html>';
-   
+   */
    res.writeHead(200,{
      'Content-Type':'text/html',
      'Content-Length':Buffer.byteLength(html),
@@ -70,6 +73,8 @@ function showHome(res){
 
 }
 function showLogin(res){
+  var html = fs.readFileSync('./login.html','utf-8');
+  /*
   var html = '<!DOCTYPE html>'
             + '<html>'
             + '  <head>'
@@ -84,6 +89,7 @@ function showLogin(res){
             + '    </form>'
             + '  </body>'
             + '</html>';
+  */
   res.writeHead(200,{
     'Content-Type':'text/html',
     'Content-Length':Buffer.byteLength(html)
