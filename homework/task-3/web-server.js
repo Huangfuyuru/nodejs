@@ -9,9 +9,9 @@ var userList = [
 ];
 var chapterList = JSON.parse(fs.readFileSync('./js/data.js','utf8'));
 http.createServer((req,res)=>{
-  //log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
-  //log(req.headers);
-  //log('');
+  log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
+  log(req.headers);
+  log('');
 
   switch(req.method){
     case 'GET':
