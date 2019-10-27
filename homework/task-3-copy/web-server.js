@@ -89,7 +89,7 @@ function create(req,res){
  // log(req.headers);
  // log('');
  
-  var item = '';
+  // var item = '';
   if(req.url == '/login/'){
   var auth = req.headers.authorization;
   if(auth){

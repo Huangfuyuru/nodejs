@@ -14,11 +14,13 @@ window.onload=function(){
           headers:new Headers({
             'Content-Type':'application/json'
           })
-          }).then((res)=>{
-            res.text().then((txt)=>{
-              console.log(txt);
-              document.location = txt;
-            })
+          }).then(res=>res.json())
+          .then(res=>{
+            if(res.stateCode == 200){
+              document.location = 'http://192.168.58.144:8080/addChapter/'
+            }else{
+              document.location = 'http://192.168.58.144:8080/login/'
+            }
           })
   }
 }

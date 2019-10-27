@@ -99,7 +99,11 @@ function create(req,res){
     userList.forEach((person)=>{
       if(person.username == item.username && person.pwd == item.pwd){
         log('成功');
-        res.end('http://192.168.58.144:8080/addChapter/');
+        res.statusCode = 200;
+        res.end('OK');
+      }else{
+        res.statusCode = 404;
+        res.end('NO')
       }
     });
     log('失败');
