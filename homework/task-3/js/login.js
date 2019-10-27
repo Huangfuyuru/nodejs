@@ -14,13 +14,19 @@ window.onload=function(){
           headers:new Headers({
             'Content-Type':'application/json'
           })
-          }).then(res=>res.json())
-          .then(res=>{
-            if(res.stateCode == 200){
-              document.location = 'http://192.168.58.144:8080/addChapter/'
-            }else{
-              document.location = 'http://192.168.58.144:8080/login/'
-            }
           })
-  }
+        .then(res=>{
+            console.log('res',res);
+            console.log('res.status',res.status);
+            //return res;
+          
+            if(res.status === 200){
+              window.location = 'http://192.168.58.144:8080/addChapter/'
+            }else{
+              window.location = 'http://192.168.58.144:8080/login/'
+            }
+            
+          })
+
+    }
 }

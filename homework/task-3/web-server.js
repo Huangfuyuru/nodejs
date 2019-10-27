@@ -98,19 +98,19 @@ function create(req,res){
     item = JSON.parse(item);
     userList.forEach((person)=>{
       if(person.username == item.username && person.pwd == item.pwd){
+        log('username',item.username);
+        log('personname',person.username);
         log('成功');
         res.statusCode = 200;
         res.end('OK');
-      }else{
-        res.statusCode = 404;
-        res.end('NO')
-      }
-    });
-    log('失败');
-    res.end('no');
+      };
+    //res.statusCode = 404;
+    //res.end('no');
   });
+  res.statusCode = 404;
+  res.end('no')
+  })
   }
-
   if(req.url == '/add'){
     req.on('data',(data)=>{
       item += data;
