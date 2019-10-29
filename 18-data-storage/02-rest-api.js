@@ -26,7 +26,7 @@ http.createServer((req,res)=>{
     break;
   }
   res.end('server OK!')
-}).listen(3000);
+}).listen(8080);
 
 function select(req,res){
   var data = JSON.stringify(items);//将对象或数组 转换为一个 JSON字符串
@@ -53,18 +53,11 @@ function create(req,res){
 }
 
 function update(req,res){
-  //删除的放在查询字符串中，改变的放在请求体中
-  //验证id
-  //parse url get id
-  //parse req get content
-  //modify items.items[id] = new content
   res.end(req.method);
 }
 
 function remove(req,res){
   var id = req.url.slice(1,req.url.length);
-  //验证id 1.type 2.range范围 
-  //删除相对应id的数组items元素
   items = items.splice(id,1);
   res.end('remove OK');
 }
