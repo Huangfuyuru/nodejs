@@ -71,7 +71,16 @@ function show(res){
 }
 
 
-function select(){
+function select1(){
+  new Promise((resolve,reject)=>{
+    con.query('select * from todo',(err,result)=>{
+      if(err){
+        reject(err)
+      }
+      resolve(result);
+    })
+  })
+  /*
 con.query('select * from todo',(err,result)=>{
   if(err){
     console.log(err.message);
@@ -79,8 +88,12 @@ con.query('select * from todo',(err,result)=>{
   }
   items = result;
 })
+*/
 }
-
+async function select(){
+  items = await select1();
+  console.log(items)
+}
 function insert(){
 con.query('insert into todo(item) values(?)',[item],(err,result)=>{
   if(err){
