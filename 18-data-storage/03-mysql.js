@@ -30,6 +30,7 @@ con.query('delete from books where book_id = ?',[104],(err,result)=>{
 })
 */
 //改
+/*
 con.query('update books set title = ? where book_id = ?',['xiaowang',102],(err,result)=>{
   if(err){
     console.log(err.message);
@@ -37,6 +38,7 @@ con.query('update books set title = ? where book_id = ?',['xiaowang',102],(err,r
   }
   process.exit(0)
 })
+*/
 //查
 con.query('select * from books',(err,result)=>{
   if(err){
