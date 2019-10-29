@@ -9,6 +9,7 @@
   "dependencies": {
     "baidutemplate": "^1.0.5-dev",
     "eslint": "^6.4.0",
+    "mysql": "^2.17.1",
     "nodemon": "^1.19.4",
     "telnet": "0.0.1"
   },
