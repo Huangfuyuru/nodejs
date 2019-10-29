@@ -1,28 +1,31 @@
 #!/usr/bin/node
+
 const http = require('http'),
       log = console.log,
       fs = require('fs'),
       url = require('url'),
       qs = require('querystring');
+
 var userList = [
   {username:'admin',pwd:'admin'}
 ];
+
 var chapterList = JSON.parse(fs.readFileSync('./js/data.js','utf8'));
+
 http.createServer((req,res)=>{
-  log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
-  log(req.headers);
+  log(`${req.method} ${req.url} HTTP/${req.httpVersion}`);
+  //log(req.headers);
   log('');
 
-  switch(req.method){
+  switch(req.method) {
     case 'GET':
       select(req,res);
       break;
+
     case 'POST':
       create(req,res);
       break;
-    default:
-      break;
-    }
+  }
 }
 ).listen(8080);
 
@@ -46,6 +49,7 @@ function select(req,res){
     res.setHeader('Access-Control-Allow-Origin','*');
     res.end(data);
   }
+
   switch(req.url){
     case '/list/':
       file += '/chapterList.html';
@@ -60,13 +64,16 @@ function select(req,res){
       file += '/addChapter.html';
       break;
     default:
+      log('path1',req.url);
       var fileQuery = req.url.split('?')[0];
+      log('path2',fileQuery);
       fileitem = fileQuery.split('/');
-      //log(fileitem);
+      log('path3',fileitem);
       for(var a = 2;a<fileitem.length;a++){
         var s = '/'+fileitem[a];
         file += s
       }
+      log('path4',file)
       break;
     }
    // log(file)
