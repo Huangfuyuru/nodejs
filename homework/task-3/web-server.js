@@ -15,7 +15,7 @@ var chapterList = JSON.parse(fs.readFileSync('./js/data.js','utf8'));
 http.createServer((req,res)=>{
   log(`${req.method} ${req.url} HTTP/${req.httpVersion}`);
   //log(req.headers);
-  log('');
+  //log('');
 
   switch(req.method) {
     case 'GET':
@@ -35,6 +35,7 @@ function select(req,res){
   var itemQuery = qs.parse(pathQuery);
   var file = __dirname;
   var fileitem = [];
+
   if(itemQuery.chapterId && pathQuery != null){
     var data=JSON.stringify(chapterList[itemQuery.chapterId-1]);
     res.setHeader('Content-Length',Buffer.byteLength(data));
@@ -42,6 +43,7 @@ function select(req,res){
     res.setHeader('Access-Control-Allow-Origin','*');
     res.end(data);
   }
+
   if(req.url == '/list'){
     var data = JSON.stringify(chapterList);
     res.setHeader('Content-Length',Buffer.byteLength(data));
@@ -75,22 +77,38 @@ function select(req,res){
       }
       log('path4',file)
       break;
-    }
-   // log(file)
-    fs.readFile(file,(err,data)=>{
-      if(err){
-        log(err.message);
-        res.statusCode = 404;
-        res.end(err.message);
+ }
+ // log(file)
+ 
+  var ext = file.split('.')[1];
+  log(' ');
+  log('debug: ext = ', ext);
+  /*
+  if(ext === 'js' || ext ==='html' || ext === 'css') {
+    res.writeHead(200,{
+      'Content-Type':'text/' + ext
+    })
+  }
+  */
+  fs.readFile(file,(err,data)=>{
+    if(err){
+      log(err.message);
+      res.statusCode = 404;
+      res.end(err.message)
+    }else{
+      if(ext === 'js'|| ext === 'html' || ext === 'css'){
+        res.writeHead(200,{
+          'Content-Type':'text/' + ext
+        })
       }else{
         res.writeHead(200,{
-          'Content-Type':'text/html'
+          'Content-Type':'image/' + ext
         })
-        res.end(data)
       }
-    })
-};
-
+      res.end(data);
+  }
+});
+}
 function create(req,res){
  // log(`${req.method}${req.url} HTTP/${req.httpVersion}`);
  // log(req.headers);
