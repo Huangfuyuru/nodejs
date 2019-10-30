@@ -3,8 +3,6 @@ const http = require('http'),
       qs = require('querystring');
 
 
-var data = '';
-var count = 0;
 http.createServer((req,res)=>{
     switch (req.method) {
         case 'GET':
@@ -29,29 +27,26 @@ function getMsg(req,res){
 
 function postMsg(req,res){
     if(req.url === '/login'){
-        var newPair = 0;
+        var logincount = 1;
+        var data = '';
         req.on('data',(chunk)=>{
-            console.log('chunk',chunk);
             data += chunk;
         });
         req.on('end',()=>{
             var account = qs.parse(data);
-            console.log('user:passwd',account);
             if(account.username === 'zhangsan' && account.pwd === '123'){
-                console.log(req.headers.cookie);
-                
                 if(typeof req.headers.cookie === 'undefined'){
                     res.writeHead(200,{
-                        'Set-cookie':`count=0;max-age=6000`
+                        'Set-cookie':`logincount=1;max-age=6000`
                     });
-                    res.end(`load ${newPair} times`)
+                    res.end(`load ${logincount} times`)
                 }else{
                     var pair = req.headers.cookie.split('=');
-                    newPair = Number(pair[1])+1;
+                    logincount = Number(pair[1])+1;
                     res.writeHead(200,{
-                        'Set-cookie':`count=${newPair};max-age=6000`
+                        'Set-cookie':`logincount=${logincount};max-age=6000`
                     });
-                    res.end(`load ${newPair} times`)
+                    res.end(`load ${logincount} times`)
                 }
                 
             }else{
@@ -67,7 +62,7 @@ function postMsg(req,res){
 }
 
 function show(res){
-    var data = fs.readFileSync('./index.html','utf8');
+    var data = fs.readFileSync('./login.html','utf8');
     res.writeHead(200,{
         'Content-Type':'text/html'
     });
