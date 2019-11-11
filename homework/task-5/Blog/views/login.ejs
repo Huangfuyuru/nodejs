@@ -20,7 +20,7 @@
             display: -webkit-flex;
         }
         .leftpart {
-            background: url(./login_bg.jpg) no-repeat;
+            background: url(img/login_bg.jpg) no-repeat;
             position: fixed;
             top: 0;
             bottom: 0;
@@ -99,17 +99,41 @@
         <div class="leftpart"></div>
         <div class="loginform">
             <form class="myform">
-                <input type="text" autocomplete="off" placeholder="帐号" class="el-input__inner"  id="username" />
+                <input type="text" autocomplete="off" placeholder="帐号" name="username" class="el-input__inner"  id="username" />
                 
-                <input type="password" autocomplete="off" placeholder="密码" class="el-input__inner"  id="pwd" />
+                <input type="password" autocomplete="off" placeholder="密码" name="password" class="el-input__inner"  id="pwd" />
             
-                <button type="button" class="el-button login-btn-submit el-button--primary" id="login"><!----><!----><span>登录</span></button>
+                <input type="button" class="el-button login-btn-submit el-button--primary" id="login" value="登陆">
             </form>
         </div>
     </div>
 </body>
 <script>
-
+    window.onload = function(){
+        var username = document.getElementById('username');
+        var pwd = document.getElementById('pwd');
+        var login = document.getElementById('login');
+        var arr = {};
+        login.onclick = function(){
+            arr.username = username.value;
+            arr.pwd = pwd.value;
+            arr = JSON.stringify(arr);
+            fetch('http://localhost:8080/login',{
+                method:'POST',
+                body:arr,
+                headers:new Headers({
+                    'Content-Type':'application/json'
+                })
+            }).then(res=>{
+                console.log(res.status)
+                if(res.status == 200){
+                    window.location = 'http://localhost:8080/listmanager'
+                }else{
+                    window.location = 'http://localhost:8080/login'
+                }
+            })
+        } 
+    }
 
     
 </script>
