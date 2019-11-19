@@ -38,17 +38,30 @@ http.createServer((req, res) =>{
 
 
 //join把数组中的所有元素放入一个字符串，通过指定的分隔符进行分割
+// function show(res){
+//   var html = fs.readFileSync('./template.html').toString('utf8'),
+//       items_html = items.map(function(item){
+//         return '<li>'+item+'</li>';
+//       }).join('\n');
+//   //将%占位符替换
+//   html = html.replace('%',items_html);
+//   res.writeHead(200,{
+//     'Content-Type':'text/html',
+//     'Content-Length':Buffer.byteLength(html),
+//     'Access-Control-Allow-Origin':'*'
+//   })
+//   res.end(html);
+// }
+
 function show(res){
-  var html = fs.readFileSync('./template.html').toString('utf8'),
-      items_html = items.map(function(item){
-        return '<li>'+item+'</li>';
-      }).join('\n');
-  //将%占位符替换
+  var html = fs.readFileSync('./template.html').toString('utf8');
+  var items_html = items.map((item)=>{
+      return `<li>${item}</li>`
+  }).join('\n');
   html = html.replace('%',items_html);
   res.writeHead(200,{
     'Content-Type':'text/html',
-    'Content-Length':Buffer.byteLength(html),
-    'Access-Control-Allow-Origin':'*'
+    'Content-Length':Buffer.byteLength(html)
   })
-  res.end(html);
+  res.end(html)
 }

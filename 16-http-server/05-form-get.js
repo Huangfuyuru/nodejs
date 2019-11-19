@@ -50,3 +50,52 @@ function show(res){
               +'</html>\n';
   res.end(html);
 }
+
+// var http = require('http'),
+//     qs = require('querystring'),
+//     url = require('url'),
+//     log = console.log;
+// var item = ['jisoo'];
+// http.createServer((req,res)=>{
+//   var path = url.parse(req.url).pathname;
+//   if(path == '/'){
+//     res.writeHead(200,{
+//       'Content-Type':'text/html',
+     
+//     })
+//     add(req,res);
+//   }else{
+//     res.statusCode = 404;
+//     res.end()
+//   }
+// }).listen(8080)
+
+// function add(req,res){
+//   var path = qs.parse(url.parse(req.url).query).item;
+//   if(path !== 'undefined'){
+//     item.push(path)
+//     show(res)
+//   }
+// }
+
+// function show(res){
+//   var html = '<!DOCTYPE html>\n'+
+//              '<html>\n'+
+//              '<meta charset="UTF-8"/>\n'+
+//              '<head>\n'+
+//              '<title>arr</title>\n'+
+//              '</head>\n'+
+//              '<body>\n'+
+//              '<form method="GET" action="/">'+
+//                 '<input type="text" name="item"/>'+
+//                 '<input type="submit" value="提交">'+
+//              '</form>'+
+//              '<ul>'+
+//               item.map((item)=>{
+//                 return `<li>${item}</li>`
+//               })
+//              '</ul>'+
+//              '</body>\n'+
+//              '</html>\n'
+//   res.end(html)
+// }

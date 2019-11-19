@@ -51,19 +51,6 @@ http.createServer((req,res)=>{
 
 function showHome(res){
   var html = fs.readFileSync('./home.html','utf-8');
-  /*
-   var html='<!DOCTYPE html>'
-            + '<html>'
-            + '  <head>'
-            + '    <meta charset="UTF-8">'
-            + '    <title>home</title>'
-            + '  </head>'
-          + '    <body>'
-          + '       <h1>This is home page, you are login!</h1>'
-          + '       <a href="/logout">logout</a>'
-          + '    </body>'
-            + '</html>';
-   */
    res.writeHead(200,{
      'Content-Type':'text/html',
      'Content-Length':Buffer.byteLength(html),

@@ -9,7 +9,7 @@ http.createServer((req,res)=>{
   log(req.headers);
   log('');
   
-  if(req.url == '/favicon.ico') return;
+  if(req.url == '/favicon.ico') return;//return后面代码不会执行，如果是res.end()后面代码还是会执行
   log('Im required %d',total++);
   if(typeof req.headers.cookie !== 'undefined'){
     var data = req.headers.cookie.split('=');

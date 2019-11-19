@@ -9,9 +9,10 @@ function Radio(station){
  EventEmitter.call(this);
 
  var self = this;
-
+ 
  setTimeout(()=>{
    self.emit('play',station);
+   console.log('xixi')
    //station作为参数传入，当监听到play这个事件，会传入回调函数
  },0);
 
